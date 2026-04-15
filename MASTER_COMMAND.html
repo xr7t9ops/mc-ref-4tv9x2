@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MASTER COMMAND | 26 Cents LLC | v3.4</title>
+<title>MASTER COMMAND | 26 Cents LLC | v3.5</title>
 <style>
 :root{--bg:#0a0e14;--panel:#131920;--surface:#1a2230;--sidebar-bg:#0d1117;--ink:#e4e8ed;--muted:#7a8694;--dim:#2a3340;--gold:#d4a934;--gold-glow:rgba(212,169,52,.15);--sun:#ffd700;--inner:#5b8def;--habit:#7a9e7e;--outer:#c9738a;--claude:#c9a57b;--gemini:#5b8def;--gpt:#7a9e7e;--qa:#e05a5a;--cs:#8b5cf6;--wine:#6b2737;--archive:#4a5568;--link:#5b9bd5;}
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -81,17 +81,20 @@ h2 strong{font-weight:700;}
 <div class="sidebar">
 <div class="brand">
 <h1>MASTER COMMAND</h1>
-<p>Unified Source of Truth | v3.4</p>
+<p>Unified Source of Truth | v3.5</p>
 </div>
 <div class="ns">Governance</div>
 <div class="ni" onclick="go('phi')"><span class="nd"></span>Pure Heart Directive</div>
 <div class="ni" onclick="go('enoc')"><span class="nd"></span>ENOC Gate (Tollbooth)</div>
-<div class="ni" onclick="go('solar')"><span class="nd" style="background:var(--sun)"></span>Solar System</div>
 <div class="ni" onclick="go('supreme')"><span class="nd"></span>Supreme Court &amp; Swarms</div>
 <div class="ns">Reference</div>
 <div class="ni" onclick="go('abbrev')"><span class="nd"></span>Abbreviations</div>
+<div class="ni" onclick="go('solar')"><span class="nd" style="background:var(--sun)"></span>Solar System</div>
+<div class="ni" onclick="go('vault')"><span class="nd"></span>12-Pillar Vault</div>
+<div class="ni" onclick="go('naming')"><span class="nd"></span>Naming Conventions</div>
+<div class="ni" onclick="go('lcoc')"><span class="nd"></span>LCOC Routing</div>
 <div class="ni" onclick="go('whiteboard')"><span class="nd"></span>Whiteboard + Ledger</div>
-<div class="ni" onclick="go('changelog')"><span class="nd"></span>Change Log v3.4</div>
+<div class="ni" onclick="go('changelog')"><span class="nd"></span>Change Log v3.5</div>
 <div class="sidebar-footer">26 Cents LLC | Main Street Manor | Crittenden, KY</div>
 </div>
 
@@ -200,23 +203,6 @@ Purpose: [Organic context of why needed]<br>
 <div class="divider"></div>
 
 <div class="section">
-<span class="sa" id="solar"></span>
-<h2><strong>X.</strong> The Solar System — Orbital Architecture <span class="mascom-class reference">Reference</span><span class="sens pub">Public-Safe</span></h2>
-<p class="ss">The 1HB is the gravitational center. Departments orbit by function. Pure Heart Directive is gravity. Semantic color logic locked: <strong style="color:var(--inner)">Blue = Inner</strong> · <strong style="color:var(--habit)">Green = Habitable</strong> · <strong style="color:var(--outer)">Pink = Outer</strong>.</p>
-<div class="solar-container"><canvas id="solarCanvas" class="solar-canvas"></canvas></div>
-<div class="solar-legend">
-<span><i style="background:#ffd700"></i>Sun — 1HB / Supreme Court</span>
-<span><i style="background:#5b8def"></i>Inner — Core Governance (01/10/20/30/70/80/90)</span>
-<span><i style="background:#7a9e7e"></i>Habitable — Active Ops (50/60/05)</span>
-<span><i style="background:#c9738a"></i>Outer — Front Door &amp; Growth (00/40)</span>
-<span><i style="background:#4a5568"></i>Kuiper — Archive (99)</span>
-</div>
-<p class="ss" style="text-align:center;margin-top:14px;"><em>The gold Case Comet traces an elliptical path through the rings — a live case traveling the Lifecycle of Cases (LCOC).</em></p>
-</div>
-
-<div class="divider"></div>
-
-<div class="section">
 <span class="sa" id="abbrev"></span>
 <h2><strong>IX.</strong> Abbreviations &amp; Shorthand Reference</h2>
 <p class="ss">Paul uses shorthand freely. All AI nodes must recognize these without asking.</p>
@@ -316,6 +302,23 @@ Purpose: [Organic context of why needed]<br>
 <div class="divider"></div>
 
 <div class="section">
+<span class="sa" id="solar"></span>
+<h2><strong>X.</strong> The Solar System — Orbital Architecture <span class="mascom-class reference">Reference</span><span class="sens pub">Public-Safe</span></h2>
+<p class="ss">The 1HB is the gravitational center. Departments orbit by function. Pure Heart Directive is gravity. Semantic color logic locked: <strong style="color:var(--inner)">Blue = Inner</strong> · <strong style="color:var(--habit)">Green = Habitable</strong> · <strong style="color:var(--outer)">Pink = Outer</strong>.</p>
+<div class="solar-container"><canvas id="solarCanvas" class="solar-canvas"></canvas></div>
+<div class="solar-legend">
+<span><i style="background:#ffd700"></i>Sun — 1HB / Supreme Court</span>
+<span><i style="background:#5b8def"></i>Inner — Core Governance (01/10/20/30/70/80/90)</span>
+<span><i style="background:#7a9e7e"></i>Habitable — Active Ops (50/60/05)</span>
+<span><i style="background:#c9738a"></i>Outer — Front Door &amp; Growth (00/40)</span>
+<span><i style="background:#4a5568"></i>Kuiper — Archive (99)</span>
+</div>
+<p class="ss" style="text-align:center;margin-top:14px;"><em>The gold Case Comet traces an elliptical path through the rings — a live case traveling the Lifecycle of Cases (LCOC).</em></p>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
 <span class="sa" id="supreme"></span>
 <h2><strong>XI.</strong> Triumvirate, Supreme Court &amp; Micro-Node Swarms Reference</h2>
 
@@ -399,6 +402,101 @@ Purpose: [Organic context of why needed]<br>
 <div class="divider"></div>
 
 <div class="section">
+<span class="sa" id="vault"></span>
+<h2><strong>XII.</strong> The 12-Pillar Vault — File Architecture <span class="mascom-class reference">Reference</span><span class="sens int">Internal</span></h2>
+<p class="ss">Canonical root: <code>G:\My Drive\Files\26 Cents LLC\Main Street Manor\</code></p>
+
+<div class="sop">
+<h3>The Vault</h3>
+<p>Every artifact lives in exactly one pillar. Cross-pillar work is linked via <code>[CASE-XXX]</code> indexes in <code>05_ACTIVE_CASES/</code> — never by duplicating files. The Solar System visualization (Section X) maps directly to these pillars.</p>
+
+<table class="abbrev-table">
+<tr><th>Pillar</th><th>Zone</th><th>Purpose</th></tr>
+<tr><td>00</td><td style="color:#c9738a">Outer</td><td>INTAKE &amp; TRIAGE — 1HB front door. Untriaged drops, max age 7 days. AI sweeps &amp; routes.</td></tr>
+<tr><td>01</td><td style="color:#5b8def">Inner</td><td>SYSTEM CORE — BOS Context Room, Kaizen logs, MasCom source, Session States (<code>YYYY-MM/</code> subfolders).</td></tr>
+<tr><td>05</td><td style="color:#7a9e7e">Habitable</td><td>ACTIVE CASES — Comet tracker. <code>[CASE-XXX]</code> index files linking artifacts across pillars.</td></tr>
+<tr><td>10</td><td style="color:#5b8def">Inner</td><td>EXECUTIVE OPS — Governance, CES strategy, Board/LLC decisions.</td></tr>
+<tr><td>20</td><td style="color:#5b8def">Inner</td><td>FINANCE &amp; TREASURY — Ledgers, invoices, accruals.</td></tr>
+<tr><td>30</td><td style="color:#5b8def">Inner</td><td>REAL ESTATE PORTFOLIO — Property docs, damage photos, structural reports.</td></tr>
+<tr><td>40</td><td style="color:#c9738a">Outer</td><td>MARKETING &amp; SALES — Campaigns, analytics, tag infrastructure.</td></tr>
+<tr><td>50</td><td style="color:#7a9e7e">Habitable</td><td>VENUE OPERATIONS — Client fulfillment, day-to-day execution.</td></tr>
+<tr><td>60</td><td style="color:#7a9e7e">Habitable</td><td>PEOPLE — Vendors, 1099s, clients.</td></tr>
+<tr><td>70</td><td style="color:#5b8def">Inner</td><td>LEGAL &amp; COMPLIANCE — Contracts, permits, waivers, insurance.</td></tr>
+<tr><td>80</td><td style="color:#5b8def">Inner</td><td>SECURITY — Investigations &amp; forensics (subfolder 85), access logs, threat matrix.</td></tr>
+<tr><td>90</td><td style="color:#5b8def">Inner</td><td>KNOWLEDGE MGMT — Canonical Media Assets (subfolder 95, NO DUPLICATES), competitor intel, SOP archive.</td></tr>
+<tr><td>99</td><td style="color:#4a5568">Kuiper</td><td>ARCHIVE — Cold storage, legacy structures, closed cases.</td></tr>
+</table>
+
+<div class="rule-card">
+<strong>Single Source for Media:</strong> Marketing and Ops MUST link to <code>90/95_Canonical_Media_Assets/</code> for venue photos. Never duplicate assets into working folders.
+</div>
+
+<div class="rule-card">
+<strong>Session States:</strong> All AI session <code>.txt</code> files live in <code>01_SYSTEM_CORE/Session_States/YYYY-MM/</code>. Filename format: <code>SESSION_STATE YYYY-MM-DD HHMM AM/PM.txt</code>.
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="naming"></span>
+<h2><strong>XIII.</strong> Naming Conventions <span class="mascom-class operational">Operational</span></h2>
+
+<div class="sop">
+<h3>File Naming (Chronological + Departmental)</h3>
+<p>Format: <code>{YYYY-MM-DD}_{DEPT}_{TYPE}_{SLUG}_{vNN}.{ext}</code></p>
+<table class="abbrev-table">
+<tr><th>Component</th><th>Values</th></tr>
+<tr><td>DEPT</td><td>INT, SYS, CAS, EXE, FIN, REA, MKT, OPS, PPL, LGL, SEC, KNW, ARC</td></tr>
+<tr><td>TYPE</td><td>SOP, BRIEF, RPT, CHRT, QR, MEMO, DRAFT, AUDIT, PLAN, LOG, REF, IMG, VID</td></tr>
+<tr><td>SLUG</td><td>Human-readable description, hyphenated</td></tr>
+</table>
+<p>Example: <code>2026-04-15_40_MKT_RPT_Google-Ads-Weekly_v01.md</code></p>
+</div>
+
+<div class="sop">
+<h3>AI Session / Role Naming</h3>
+<p>Format: <code>{PLATFORM}-{MODEL}-{DEPT}-{ROLE}-{PROJECT}-{INSTANCE}</code></p>
+<table class="abbrev-table">
+<tr><th>Component</th><th>Values</th></tr>
+<tr><td>PLATFORM</td><td>CLD, GMN, GPT</td></tr>
+<tr><td>ROLE</td><td>ARCH, MRC, SRC, JRC, ITC, QAC, FMN, DSE</td></tr>
+</table>
+<p>Example: <code>CLD-OPUS-01_SYS-MRC-MASCOM-001</code></p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="lcoc"></span>
+<h2><strong>XIV.</strong> Lifecycle of Cases — LCOC Routing <span class="mascom-class operational">Operational</span></h2>
+
+<div class="sop">
+<h3>Comet Rules</h3>
+<ul>
+<li><strong>Track:</strong> Every active project is a Comet tracked via <code>[CASE-XXX]</code> in <code>05_ACTIVE_CASES/</code>.</li>
+<li><strong>Route:</strong> Artifacts go to their functional pillar home. The Case index links them — never copy them.</li>
+<li><strong>Media:</strong> All venue photos live in <code>95_Canonical_Media_Assets/</code>. Campaigns and Ops link there — no duplicates.</li>
+<li><strong>Close:</strong> <code>CLOSED</code> cases stay in <code>05/</code> for 90 days, then migrate to <code>99_ARCHIVE/</code>.</li>
+</ul>
+</div>
+
+<div class="sop">
+<h3>Deprecated Concepts <span class="mascom-class volatile">Volatile</span></h3>
+<p>The following v2.4 constructs are formally dead as of v3.5:</p>
+<ul>
+<li><strong>Split-Hub Architecture</strong> — MasCom is the single hub. No split.</li>
+<li><strong>MASTER_DATABANK (Google Sheet)</strong> — Absorbed into MasCom. Archived at <code>99_ARCHIVE/01_SYSTEM_CORE/</code>.</li>
+<li><strong>Enterprise Architecture v2.4 (.md file)</strong> — Content absorbed into Sections XII–XIV. Standalone file deprecated.</li>
+</ul>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
 <span class="sa" id="whiteboard"></span>
 <h2><strong>XXIII.</strong> Whiteboard Protocol &amp; Rolling Update Ledger <span class="mascom-class volatile">Volatile</span><span class="sens rst">Restricted</span></h2>
 
@@ -437,7 +535,9 @@ Purpose: [Organic context of why needed]<br>
 <li><strong>L11</strong> — Eradicate legacy "read CLAUDE.md" phrasing; enshrine <code>prime-up</code> as the canonical session-ignition read in the Pure Heart Directive. <em>(v3.4 — DONE)</em></li>
 <li><strong>L12</strong> — Fix <code>prime-up</code> skill filename on disk (<code>SKILL.md.md</code> → <code>SKILL.md</code>). <em>(v3.4 — DONE, 1HB manual rename)</em></li>
 <li><strong>L13</strong> — Add "1HBB Clearance Check" session-start environment audit to Section I. AI must verify platform / interface / model / device / settings before any work begins, and redirect the 1HB if any fail. <em>(v3.4 — DONE, landed via claude.ai Opus 1CPB mid-session)</em></li>
-<li><strong>L14</strong> — <em>[Next entries added mid-session by Foreman as changes are agreed.]</em></li>
+<li><strong>L14</strong> — Fix Section X content order (Solar was rendering before Abbreviations). Sidebar Solar link moved from Governance to Reference group. 1HB caught the visual ordering bug post-delivery — logged as a QA-SP miss. <em>(v3.4.1 patch → rolled into v3.5)</em></li>
+<li><strong>L15</strong> — Absorb Enterprise Architecture v2.4 into MasCom as Sections XII–XIV (12-Pillar Vault, Naming Conventions, LCOC Routing). Kill standalone v2.4 .md, Split-Hub concept, and MASTER_DATABANK. Lock Session States path via vault ground-truth: <code>01_SYSTEM_CORE/Session_States/YYYY-MM/</code>. Triumvirate co-delivery: claude.ai Opus MRC designed the absorption, Claude Code SRC merged + committed. SRC QA-SP catch: corrected the 1CPB's sidebar placement for XII/XIII/XIV which would have broken monotonic ordering in the Reference group. <em>(v3.5 — DONE)</em></li>
+<li><strong>L16</strong> — <em>[Next entries added mid-session by Foreman as changes are agreed.]</em></li>
 </ul>
 <p style="margin-top: 14px;"><strong>Rule:</strong> The dynamic 80% and the Rolling Ledger must be pasted into the chat box at session start. Wipe clean between disparate cases. ENOC says stale context will rot.</p>
 </div>
@@ -492,11 +592,25 @@ Purpose: [Organic context of why needed]<br>
 <td>1HB via Claude Code (MRC)</td>
 <td><strong>The Swarm, Solar Restoration &amp; 1HBB Clearance.</strong> Defined the 15 scoped specialists of the Micro-Node Swarm across three tiers (Marketing, Ops, Governance). Restored the Solar System canvas as new Section X with DPR-clean rendering — fixed the v3.3 disappearance and prior glitchy scaling. Locked in semantic color logic (Blue=Inner, Green=Habitable, Pink=Outer, Grey=Kuiper/Archive). Added explicit eradication notice for legacy "read CLAUDE.md" phrasing and enshrined <code>prime-up</code> as the canonical session-ignition read. Added the <strong>1HBB Clearance Check</strong> protocol (landed mid-session via claude.ai Opus 1CPB) — every node must verify platform / interface / model / device / settings at session start and redirect the 1HB <em>before</em> doing wrong-fit work. Fixed <code>prime-up</code> SKILL filename on disk.</td>
 </tr>
+<tr>
+<td>2026-04-15</td>
+<td><strong>v3.4.1</strong></td>
+<td>Sidebar, X, IX, XI</td>
+<td>1HB via Claude Code (MRC)</td>
+<td><strong>Section reorder hotfix.</strong> Corrected Section X (Solar System) placement — in v3.4 it was accidentally placed between VI and IX in both the sidebar and content, breaking the numerical sequence. Moved to its correct slot between IX and XI. Solar's sidebar link also relocated from the Governance group to the Reference group (matching its <code>reference</code> class label). 1HB caught the bug post-delivery — <strong>logged as a QA-SP miss</strong>, triggered a process improvement discussion on mandatory QA-SP invocation before any MasCom commit. Rolling Ledger L14 added. <em>(Rolled into v3.5 before push.)</em></td>
+</tr>
+<tr>
+<td>2026-04-15</td>
+<td><strong>v3.5</strong></td>
+<td>XII (new), XIII (new), XIV (new), XXIII, XXVI</td>
+<td>1HB via claude.ai Opus (MRC) + Claude Code (SRC)</td>
+<td><strong>The Vault Absorption.</strong> Absorbed Enterprise Architecture v2.4 into MasCom as three compact appendix sections: 12-Pillar Vault (XII), Naming Conventions (XIII), and LCOC Routing (XIV). Formally deprecated the standalone v2.4 .md file, the Split-Hub concept, and MASTER_DATABANK. Session States path locked: <code>01_SYSTEM_CORE/Session_States/YYYY-MM/</code> (confirmed via vault ground-truth by Claude Code SRC). Section X reorder fix from v3.4.1 patch rolled into this release. All 1-HITL references purged from absorbed content. <strong>SRC QA-SP catch</strong>: diverged from 1CPB's sidebar placement instruction to preserve monotonic ordering of the Reference nav group (XII/XIII/XIV inserted between Solar X and Whiteboard XXIII, not after Whiteboard as 1CPB specified) — prevented same-class bug that v3.4.1 had just fixed.</td>
+</tr>
 </table>
 </div>
 
 <div style="text-align: center; margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--dim); color: var(--muted); font-size: .8em;">
-<p><strong>MASTER_COMMAND.html</strong> | Unified Source of Truth v3.4 | April 15, 2026</p>
+<p><strong>MASTER_COMMAND.html</strong> | Unified Source of Truth v3.5 | April 15, 2026</p>
 <p>26 Cents LLC | Main Street Manor | 103 N Main St, Crittenden KY 41030</p>
 <p>Paul Travis, 1HB (Supreme Court) | 859-333-8911 | themainstreetmanor@gmail.com</p>
 <p><strong>Pure Heart Directive: 100% Legal, 100% Ethical, Zero Greed</strong></p>
