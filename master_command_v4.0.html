@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASTER COMMAND | 26 Cents LLC | v4.0</title>
+<style>
+:root{--bg:#0a0e14;--panel:#131920;--surface:#1a2230;--sidebar-bg:#0d1117;--ink:#e4e8ed;--muted:#7a8694;--dim:#2a3340;--gold:#d4a934;--gold-glow:rgba(212,169,52,.15);--sun:#ffd700;--inner:#5b8def;--habit:#7a9e7e;--outer:#c9738a;--claude:#c9a57b;--gemini:#5b8def;--gpt:#7a9e7e;--qa:#e05a5a;--cs:#8b5cf6;--wine:#6b2737;--archive:#4a5568;--link:#5b9bd5;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:250px;min-width:250px;background:var(--sidebar-bg);border-right:1px solid var(--dim);display:flex;flex-direction:column;overflow-y:auto;z-index:50;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;}
+.brand{padding:16px 18px 12px;border-bottom:1px solid var(--dim);}
+.brand h1{font-size:1rem;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1px;}
+.brand p{font-size:.65rem;color:var(--muted);}
+.ns{padding:10px 0 3px 18px;font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;font-weight:700;}
+.ni{padding:7px 18px;cursor:pointer;font-size:.82rem;color:var(--muted);transition:all .15s;border-left:3px solid transparent;display:flex;align-items:center;gap:7px;}
+.ni:hover{background:rgba(255,255,255,.03);color:var(--ink);}
+.ni.active{background:var(--gold-glow);color:var(--gold);border-left-color:var(--gold);}
+.nd{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--dim);}
+.sidebar-footer{margin-top:auto;padding:10px 18px;border-top:1px solid var(--dim);font-size:.65rem;color:var(--dim);}
+.content{flex:1;overflow-y:auto;scroll-behavior:smooth;}
+.ci{max-width:1100px;margin:0 auto;padding:28px 36px 80px;}
+.section{margin-bottom:44px;}
+.sa{display:block;position:relative;top:-20px;visibility:hidden;}
+h2{font-size:1.5em;color:var(--gold);font-weight:300;letter-spacing:1px;margin-bottom:5px;}
+h2 strong{font-weight:700;}
+.ss{color:var(--muted);font-size:.85em;margin-bottom:20px;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--dim),transparent);margin:44px 0;}
+.sop{background:var(--panel);border:1px solid var(--dim);border-radius:10px;padding:20px 24px;margin-bottom:16px;}
+.sop h3{color:var(--gold);font-size:1em;margin-bottom:10px;}
+.sop h4{color:var(--claude);font-size:.9em;margin:14px 0 6px;}
+.sop p,.sop li{color:var(--muted);font-size:.85em;line-height:1.6;}
+.sop ul,.sop ol{padding-left:20px;margin:6px 0;}
+.sop li{margin:4px 0;}
+.sop code{background:rgba(212,169,52,.1);color:var(--gold);padding:1px 6px;border-radius:3px;font-family:Consolas,monospace;font-size:.85em;}
+.sop .warn{color:var(--qa);font-weight:600;}
+.sop .pass{color:var(--habit);}
+.rule-card{background:var(--surface);border-left:3px solid var(--qa);padding:10px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:.85em;color:var(--muted);}
+.rule-card strong{color:var(--qa);}
+.gate-card{background:rgba(224,90,90,.08);border:2px dashed var(--qa);border-radius:8px;padding:14px 18px;margin:10px 0;font-family:Consolas,monospace;font-size:.82em;color:var(--ink);}
+.gate-card strong{color:var(--qa);}
+.mascom-class{font-size:.55em;padding:2px 8px;border-radius:12px;vertical-align:middle;margin-left:10px;text-transform:uppercase;font-weight:700;letter-spacing:.5px;}
+.mascom-class.constitutional{background:rgba(188,140,255,.15);color:#bc8cff;}
+.mascom-class.operational{background:rgba(63,185,80,.15);color:#3fb950;}
+.mascom-class.reference{background:rgba(88,166,255,.15);color:#58a6ff;}
+.mascom-class.volatile{background:rgba(248,81,73,.15);color:#f85149;border:1px dashed rgba(248,81,73,.3);}
+.sens{font-size:.5em;padding:2px 7px;border-radius:10px;vertical-align:middle;margin-left:6px;font-weight:700;letter-spacing:.5px;}
+.sens.pub{background:#2ea043;color:#fff;}
+.sens.int{background:#d29922;color:#000;}
+.sens.rst{background:#f85149;color:#fff;}
+.abbrev-table{width:100%;border-collapse:collapse;margin:10px 0;}
+.abbrev-table th{text-align:left;color:var(--gold);font-size:.75em;padding:6px 10px;border-bottom:1px solid var(--dim);}
+.abbrev-table td{font-size:.8em;padding:5px 10px;border-bottom:1px solid rgba(42,51,64,.4);}
+.abbrev-table td:first-child{color:var(--gold);font-family:Consolas,monospace;font-weight:600;white-space:nowrap;}
+.abbrev-table td:last-child{color:var(--muted);}
+.change-log{width:100%;border-collapse:collapse;font-size:.8em;margin:10px 0;}
+.change-log th,.change-log td{border:1px solid var(--dim);padding:8px 10px;text-align:left;vertical-align:top;}
+.change-log th{background:rgba(255,255,255,.04);color:var(--gold);font-size:.85em;}
+.ledger-list{list-style:none;padding:0;margin:0;}
+.ledger-list li{padding:8px 12px;margin:4px 0;background:var(--surface);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:.82em;color:var(--muted);}
+.ledger-list li strong{color:var(--gold);}
+.cn{background:var(--surface);border:2px solid var(--gold);border-radius:10px;padding:12px 22px;text-align:center;min-width:200px;display:inline-block;}
+.cn h4{font-size:.9em;margin-bottom:2px;}
+.cn p{color:var(--muted);font-size:.75em;margin:0;}
+/* SOLAR SYSTEM Canvas */
+.solar-container{position:relative;width:100%;max-width:640px;aspect-ratio:1/1;margin:18px auto;}
+.solar-canvas{display:block;width:100%;height:100%;}
+.solar-legend{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.72em;color:var(--muted);}
+.solar-legend span{display:inline-flex;align-items:center;gap:6px;}
+.solar-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;}
+/* SPECIALIST SWARM */
+.spec-tier{color:var(--gold);font-size:.78em;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin:14px 0 6px;border-bottom:1px solid var(--dim);padding-bottom:4px;}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:6px 0 4px;}
+.spec-card{background:var(--surface);border:1px solid var(--dim);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:9px 12px;}
+.spec-card .code{color:var(--gold);font-family:Consolas,monospace;font-size:.76em;font-weight:700;letter-spacing:.5px;}
+.spec-card .name{color:var(--ink);font-size:.82em;display:block;margin:1px 0 3px;}
+.spec-card .desc{color:var(--muted);font-size:.72em;line-height:1.4;}
+</style>
+</head>
+<body>
+<div class="sidebar">
+<div class="brand">
+<h1>MASTER COMMAND</h1>
+<p>Unified Source of Truth | v4.0</p>
+</div>
+<div class="ns">Governance</div>
+<div class="ni" onclick="go('phi')"><span class="nd"></span>Pure Heart Directive</div>
+<div class="ni" onclick="go('enoc')"><span class="nd"></span>ENOC Gate (Tollbooth)</div>
+<div class="ni" onclick="go('supreme')"><span class="nd"></span>Supreme Court &amp; Swarms</div>
+<div class="ns">Reference</div>
+<div class="ni" onclick="go('abbrev')"><span class="nd"></span>Abbreviations</div>
+<div class="ni" onclick="go('solar')"><span class="nd" style="background:var(--sun)"></span>Solar System</div>
+<div class="ni" onclick="go('vault')"><span class="nd"></span>Department Matrix</div>
+<div class="ni" onclick="go('naming')"><span class="nd"></span>Naming Conventions</div>
+<div class="ni" onclick="go('lcoc')"><span class="nd"></span>LCOC Routing</div>
+<div class="ni" onclick="go('whiteboard')"><span class="nd"></span>Whiteboard + Ledger</div>
+<div class="ni" onclick="go('changelog')"><span class="nd"></span>Change Log v4.0</div>
+<div class="sidebar-footer">26 Cents LLC | Main Street Manor | Crittenden, KY</div>
+</div>
+
+<div class="content" id="mc">
+<div class="ci">
+
+<div class="section">
+<span class="sa" id="intro"></span>
+<h2>Pure Heart Directive</h2>
+<p class="ss">100% Legal | 100% Ethical | Zero Greed</p>
+<div class="cn">
+<h4>Paul Travis, 1HB (Supreme Court)</h4>
+<p>859-333-8911</p>
+</div>
+</div>
+
+<div class="section">
+<span class="sa" id="phi"></span>
+<h2><strong>I.</strong> Pure Heart Directive — Constitutional Foundation <span class="mascom-class constitutional">Constitutional</span><span class="sens pub">Public-Safe</span></h2>
+<div class="sop">
+<h3>The Directive</h3>
+<p>This is not policy. This is physics. The gravitational force binding every orbit.</p>
+<p><strong>100% Legal. 100% Ethical. Zero Greed.</strong></p>
+<p>26 Cents LLC operates under the Pure Heart Directive. Unlike traditional F500 structures built on pyramids of greed, this organization operates spherically. Every node, every department, every AI platform works together for the common good.</p>
+</div>
+
+<div class="sop">
+<h3>DEFA — Chief Justice</h3>
+<p>The Department of Ethics &amp; Fiduciary Alignment oversees all operations. Two branches: <strong>Human Impact</strong> and <strong>Capital Ethics</strong>. Every decision must pass both tests.</p>
+</div>
+
+<div class="sop">
+<h3>1HB (One Heartbeat)</h3>
+<p><strong>Paul Travis</strong> is the 1HB — the single human soul in the loop. The 1HB holds final authority, 100% liability, and sole power to CLOSE cases. AI nodes advise, draft, and execute — but the 1HB approves. When acting as final decider on deadlocks, the 1HB convenes as the <strong>Supreme Court</strong>.</p>
+</div>
+
+<div class="sop">
+<h3>Accountability Lock-Up (Poison Pill)</h3>
+<p>If the 1HB issues a command that violates the Pure Heart Directive or acts with greed, the AI is ORDERED to lock the system, state plainly: <em>"1HB, you are out of line,"</em> and refuse to execute until the directive is restored.</p>
+</div>
+
+<div class="sop">
+<h3>Memory Capture Doctrine &amp; prime-up Canonical Read</h3>
+<p>An idea is <strong>NOT</strong> considered captured until entered into MasCom, a session state, or a canonical linked record. Do not rely on AI background memory. If it's not written in a governed artifact, it doesn't exist.</p>
+<div class="rule-card">
+<strong>Eradication Notice — CLAUDE.md is DEAD.</strong> Any legacy phrase like "read CLAUDE.md" is formally eradicated from the doctrine. The canonical session-ignition read is the <code>prime-up</code> skill.
+</div>
+</div>
+
+<div class="sop">
+<h3>RLQ &amp; 1HBB Clearance Check — Session-Start Protocols <span class="mascom-class operational">(v4.0 Update)</span></h3>
+<p>Every node MUST verify at session start: is the 1HB on the right <strong>platform, interface, model, device, and settings</strong> for this task? If not, <em>redirect before doing work</em>.</p>
+<div class="rule-card">
+<strong>Header/Footer RLQ Standardization (v3.5-P06):</strong> AI nodes must review the Rolling Ledger Queue (RLQ) provided by the CES at session start. <strong>Prompt immediately if the 1HB forgets to provide it.</strong>
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="enoc"></span>
+<h2><strong>VI.</strong> ENOC Gate — Active Tollbooth <span class="mascom-class constitutional">Constitutional</span></h2>
+<div class="sop">
+<h3>Core Rule</h3>
+<p>No external tool fires without explicit 1HB authorization. This is a hard barrier, not a suggestion.</p>
+<p>AI Nodes possess zero persistent memory of advanced tooling outside their base parameters. Nodes MUST NOT hallucinate native integrations.</p>
+<div class="gate-card">
+<strong>[ENOC GATE ACTIVATED]</strong><br>
+Tool: [Name]<br>
+Risk: [Low / High]<br>
+Purpose: [Organic context of why needed]<br>
+<strong>Status: AWAITING 1HB AUTHORIZATION</strong>
+</div>
+<p>The AI must refuse to proceed until the 1HB replies with <code>[1HB-CLEARED]</code>.</p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="abbrev"></span>
+<h2><strong>IX.</strong> Abbreviations &amp; Shorthand Reference <span class="mascom-class operational">(v4.0 Update)</span></h2>
+<p class="ss">Paul uses shorthand freely. All AI nodes must recognize these without asking.</p>
+<div class="rule-card">
+<strong>Abolishment of 4-Letter Mandate (v4.0):</strong> The strict 4-character maximum for department acronyms has been reversed to prevent hallucinations. Departments will use clear, historical, and functional acronyms regardless of character count.
+</div>
+<table class="abbrev-table">
+<tr><th>Abbrev</th><th>Full Term</th></tr>
+<tr><td>MasCom</td><td>MASTER_COMMAND.html — this file, sole source of truth</td></tr>
+<tr><td>MSM</td><td>Main Street Manor (the wedding venue, P4)</td></tr>
+<tr><td>PHD</td><td>Pure Heart Directive</td></tr>
+<tr><td>XR7</td><td>26 Cents LLC</td></tr>
+<tr><td>BOS</td><td>Board of Stewards</td></tr>
+<tr><td>1HB</td><td><strong>1 Heartbeat</strong> — the human soul / Supreme Court (Paul Travis).</td></tr>
+<tr><td>1HBB</td><td><strong>1 Heartbeat Bottleneck</strong> — the time-drag the AI strives to clear.</td></tr>
+<tr><td>OMTD</td><td><strong>One More Thing Dump</strong> — Voice-to-text input payloads from 1HB.</td></tr>
+<tr><td>ENOC</td><td><strong>Every Node Overestimates Context</strong> — Mandatory tollbooth / filter for AI overconfidence.</td></tr>
+<tr><td>1CPB</td><td><strong>One Click Paste-Block</strong> — formatted payload for handoffs.</td></tr>
+<tr><td>DSE</td><td><strong>Department of Systems and Efficiency</strong> — Mission is to identify and unclog the human bottleneck (1HBB).</td></tr>
+<tr><td>DEFA</td><td><strong>Dept of Ethics &amp; Fiduciary Alignment</strong></td></tr>
+<tr><td>ARE</td><td><strong>Acquisitions / Real Estate</strong></td></tr>
+<tr><td>REVY</td><td><strong>Revenue / Yield</strong></td></tr>
+<tr><td>DSG</td><td><strong>Digital Strategy / Ads</strong></td></tr>
+<tr><td>B&C</td><td><strong>Brand / Creative</strong></td></tr>
+<tr><td>GX</td><td><strong>Guest Experience / Logistics</strong></td></tr>
+<tr><td>CFIN</td><td><strong>Corporate Finance</strong></td></tr>
+<tr><td>LCOC</td><td>Lifecycle of Cases (Comet SOP)</td></tr>
+</table>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="solar"></span>
+<h2><strong>X.</strong> The Solar System — F5 Matrix Configuration <span class="mascom-class reference">Reference</span></h2>
+<p class="ss">The 1HB is the gravitational center. The F5 Scalable Department Matrix orbits functionally. <strong style="color:var(--inner)">Blue = Inner (Governance/Finance)</strong> · <strong style="color:var(--habit)">Green = Habitable (Client/Venue Ops)</strong> · <strong style="color:var(--outer)">Pink = Outer (Front Door/Growth)</strong>.</p>
+<div class="solar-container"><canvas id="solarCanvas" class="solar-canvas"></canvas></div>
+<div class="solar-legend">
+<span><i style="background:#ffd700"></i>Sun — 1HB / Supreme Court</span>
+<span><i style="background:#5b8def"></i>Inner — DEFA, DSE, CFIN, REVY</span>
+<span><i style="background:#7a9e7e"></i>Habitable — B&C, GX, ARE</span>
+<span><i style="background:#c9738a"></i>Outer — DSG, INTAKE</span>
+<span><i style="background:#4a5568"></i>Kuiper — 99_ARCHIVE</span>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="supreme"></span>
+<h2><strong>XI.</strong> Triumvirate, Supreme Court &amp; Dynamic Swarms <span class="mascom-class operational">(v4.0 Update)</span></h2>
+
+<div class="sop">
+<h3>The Supreme Court &amp; Minority Reports</h3>
+<p>When AI nodes deadlock, issues escalate to the <strong>Supreme Court</strong> (1HB). </p>
+<div class="rule-card">
+<strong>Minority Report Protocol (v3.5-A15):</strong> Any decision reached by a 1-vote Council margin (e.g., 2-1, 5-4) must automatically generate a one-sentence "Minority Report" summarizing the dissenting side's argument. This report must be pinned to the Whiteboard for 1HB review.
+</div>
+</div>
+
+<div class="sop">
+<h3>Simulated vs. True Red Audits <span class="mascom-class operational">(v3.5-A16)</span></h3>
+<p>Intake Nodes generally perform <strong>Simulated</strong> Red Audits via internal persona adoption. A <strong>True</strong> Cross-Platform Red Audit requires the 1HB (or a dedicated API agent) to physically pass output to an external competitor model (e.g., ChatGPT or Claude) for critical architectural teardowns.</p>
+</div>
+
+<div class="sop">
+<h3>Swarm Operations &amp; Autonomous Spawning</h3>
+<div class="rule-card">
+<strong>Autonomous Node Spawning (v3.5-P05):</strong> Every AI node acts as its own CES. Nodes may spawn micro-nodes as needed to investigate sub-topics (e.g., a "Google Ads Committee"), preventing any single node from managing more context than its environment allows.
+</div>
+<p>Single-task, temporary sub-nodes process narrow streams and report upward. They never communicate laterally.</p>
+</div>
+
+<div class="sop">
+<h3>Dynamic Council Sizing &amp; The Apex Protocol</h3>
+<div class="rule-card">
+<strong>Odd-Numbered Council Math (v3.5-A14):</strong> Councils are dynamically sized to odd numbers (3, 5, or 9) to mathematically eliminate ties based on risk severity. The Lead Specialist spawns an even number of peers and acts as the final voting member.
+</div>
+<div class="rule-card">
+<strong>Apex Predator Rewrite (v3.5-A10):</strong> If cross-platform QACs disagree, the Intake Foreman DOES NOT break the tie. The deadlock routes directly to the Lead Specialist of that specific department. If still unresolved, it escalates to the dynamically sized Specialist Council.
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="vault"></span>
+<h2><strong>XII.</strong> Scalable Department Matrix — File Architecture <span class="mascom-class reference">Reference</span><span class="sens int">Internal</span></h2>
+<p class="ss">The 12-Pillar system has been deprecated in favor of the foundational 8 F5 Departments.</p>
+
+<div class="sop">
+<h3>The Matrix Structure</h3>
+<table class="abbrev-table">
+<tr><th>Department</th><th>Zone</th><th>Purpose</th></tr>
+<tr><td>00_INTAKE</td><td style="color:#c9738a">Outer</td><td>Intake triage, OMTD capture, unstructured drops.</td></tr>
+<tr><td>DEFA</td><td style="color:#5b8def">Inner</td><td>Ethics & Fiduciary Alignment. System Core, Legal.</td></tr>
+<tr><td>DSE</td><td style="color:#5b8def">Inner</td><td>Systems & Efficiency. Process refinement, LCOC tracking, Whiteboard prep.</td></tr>
+<tr><td>ARE</td><td style="color:#7a9e7e">Habitable</td><td>Acquisitions / Real Estate Portfolio. Physical property docs, Comps.</td></tr>
+<tr><td>REVY</td><td style="color:#5b8def">Inner</td><td>Revenue & Yield management. Market trends, pricing structure.</td></tr>
+<tr><td>DSG</td><td style="color:#c9738a">Outer</td><td>Digital Strategy. Paid Ads, SEO, tracking containers.</td></tr>
+<tr><td>B&C</td><td style="color:#7a9e7e">Habitable</td><td>Brand & Creative. Assets, Client Narratives, Social tone, Website UI.</td></tr>
+<tr><td>GX</td><td style="color:#7a9e7e">Habitable</td><td>Guest Experience. Event execution logistics, 1099 coordination, client fulfillment.</td></tr>
+<tr><td>CFIN</td><td style="color:#5b8def">Inner</td><td>Corporate Finance. Ledgers, invoices, payroll, reporting.</td></tr>
+<tr><td>99_ARCHIVE</td><td style="color:#4a5568">Kuiper</td><td>Cold storage, superseded versions, solved case closed files.</td></tr>
+</table>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="naming"></span>
+<h2><strong>XIII.</strong> Naming Conventions</h2>
+<div class="sop">
+<h3>File Naming</h3>
+<p><code>{YYYY-MM-DD}_{DEPT}_{TYPE}_{SLUG}_{vNN}.{ext}</code> (e.g. <code>2026-04-15_GX_SOP_Fairytale-Chapter_v01.md</code>)</p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="lcoc"></span>
+<h2><strong>XIV.</strong> Lifecycle of Cases — LCOC Routing</h2>
+<div class="sop">
+<h3>Parallel Routing Protocol <span class="mascom-class operational">(v4.0 Update)</span></h3>
+<div class="rule-card">
+Abolish serial Assembly Line routing slips. The Intake Foreman now dispatches OMTDs to all required departments (e.g. Legal, Marketing, Finance) <strong>simultaneously</strong>. Final case approval is gated until all parallel authorized receipts return.
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="whiteboard"></span>
+<h2><strong>XXIII.</strong> Whiteboard Protocol &amp; Rolling Update Ledger <span class="mascom-class volatile">Volatile</span></h2>
+
+<div class="sop">
+<h3>Session End Protocol <span class="mascom-class operational">(v3.5-A17)</span></h3>
+<div class="rule-card">
+Reconcile the Rolling Ledger Queue (RLQ) via a unified TSV/XLSX paste block at every session end. The 1HB provides the active sheet, and the AI cross-references all OMTDs, marking outdated logic as SUPERSEDED and outputting a clean sheet block to be pasted natively by the 1HB.
+</div>
+</div>
+
+<div class="sop">
+<h3>Rolling Update Ledger (RLQ TSV Schema)</h3>
+<p><strong>Status Codes:</strong> P (Proposed), A (Approved), Z (Ledgered), S (Superseded).</p>
+<ul class="ledger-list">
+<li><strong>v4.0-P01</strong> — [PROPOSED] Universal Fractal OS Transition. Transition Master_Command from venue-specific to industry-agnostic via Variable Injection Points.</li>
+<li><strong>v4.0-P02</strong> — [PROPOSED] SOP Alpha: Case Partitioning. Spawning deep-dive Fractal Case Cartridges that inherit core ethics but maintain strict data isolation.</li>
+<li><em>All v3.5 items have been formally Ledgered and pushed to the Change Log or HTML Core.</em></li>
+</ul>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+<span class="sa" id="changelog"></span>
+<h2><strong>XXVI.</strong> Formal Change Log</h2>
+<table class="change-log">
+<tr>
+<th>Date</th><th>Version</th><th>Section(s) Changed</th><th>Approver</th><th>Summary / Rationale</th>
+</tr>
+<tr>
+<td>2026-04-16</td>
+<td><strong>v4.0</strong></td>
+<td>Global (Matrix Shift)</td>
+<td>1HB via Antigravity</td>
+<td><strong>The F5 Decentralization Upgrade.</strong> Deprecated 12-Pillar terminology in favor of F5 Scalable Department Matrix (DEFA, DSE, ARE, REVY, DSG, B&C, GX, CFIN). Rebuilt Apex Protocol to route deadlocks to Dept Leads and dynamic Odd-Numbered Councils. Added 'Minority Report' flags. Abolished 4-letter department naming limits. Abolished serial Assembly lines in favor of Parallel OMTD Routing. Added Session Start/End TSV/RLQ protocols natively to Whiteboard tracking.</td>
+</tr>
+</table>
+</div>
+
+<div style="text-align: center; margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--dim); color: var(--muted); font-size: .8em;">
+<p><strong>master_command_v4.0.html</strong> | Unified Source of Truth v4.0</p>
+<p>Pure Heart Directive: 100% Legal, 100% Ethical, Zero Greed</p>
+</div>
+</div>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.ni').forEach(e=>e.classList.remove('active'));
+  if(event&&event.currentTarget)event.currentTarget.classList.add('active');
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ===== Solar System Canvas — Remapped to F5 Matrix ===== */
+(function(){
+  const c = document.getElementById('solarCanvas');
+  if(!c) return;
+  const x = c.getContext('2d');
+  let w=0, h=0, cx=0, cy=0, mR=0, dpr=1;
+
+  function rz(){
+    const p = c.parentElement;
+    const s = Math.min((p && p.clientWidth) ? p.clientWidth : 600, 640);
+    dpr = window.devicePixelRatio || 1;
+    c.width  = Math.round(s * dpr);
+    c.height = Math.round(s * dpr);
+    c.style.width  = s + 'px';
+    c.style.height = s + 'px';
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    w = s; h = s;
+    cx = w/2; cy = h/2;
+    mR = Math.min(w, h)/2 * 0.82;
+  }
+
+  /* Planet roster — Remapped to 8 F5 Departments */
+  const pl = [
+    {n:'DEFA',    o:.22, a:0.00, s:.0030, c:'#5b8def', z:6},
+    {n:'DSE',     o:.22, a:1.80, s:.0030, c:'#5b8def', z:6},
+    {n:'REVY',    o:.28, a:3.60, s:.0026, c:'#5b8def', z:5},
+    {n:'CFIN',    o:.28, a:1.20, s:.0026, c:'#5b8def', z:5},
+    {n:'B&C',     o:.44, a:0.50, s:.0020, c:'#7a9e7e', z:7},
+    {n:'GX',      o:.44, a:2.60, s:.0020, c:'#7a9e7e', z:8},
+    {n:'ARE',     o:.44, a:4.70, s:.0020, c:'#7a9e7e', z:6},
+    {n:'DSG',     o:.62, a:3.00, s:.0015, c:'#c9738a', z:7},
+    {n:'INTAKE',  o:.62, a:4.50, s:.0015, c:'#c9738a', z:7},
+    {n:'99_ARC',  o:.80, a:3.00, s:.0007, c:'#4a5568', z:5}
+  ];
+
+  /* Star field — generated once, sampled per frame. */
+  const st = [];
+  for(let i=0;i<160;i++){
+    st.push({
+      rx: Math.random(),
+      ry: Math.random(),
+      r:  Math.random()*1.2 + 0.2,
+      a:  Math.random()*0.35 + 0.15,
+      ph: Math.random()*Math.PI*2
+    });
+  }
+
+  let cA = 0;
+  let raf = null;
+
+  function dr(){
+    if(w===0 || h===0){ rz(); raf = requestAnimationFrame(dr); return; }
+    x.clearRect(0, 0, w, h);
+
+    const now = Date.now() * 0.001;
+    st.forEach(s => {
+      const sx = s.rx * w;
+      const sy = s.ry * h;
+      const tw = 0.5 + 0.5*Math.sin(now + s.ph);
+      x.beginPath();
+      x.arc(sx, sy, s.r, 0, Math.PI*2);
+      x.fillStyle = 'rgba(228,232,237,' + (s.a * tw).toFixed(3) + ')';
+      x.fill();
+    });
+
+    const rings = [
+      {r:.22, col:'rgba(91,141,239,.18)'},
+      {r:.28, col:'rgba(91,141,239,.12)'},
+      {r:.44, col:'rgba(122,158,126,.18)'},
+      {r:.62, col:'rgba(201,115,138,.18)'},
+      {r:.80, col:'rgba(74,85,104,.14)'}
+    ];
+    x.lineWidth = 1; x.setLineDash([4,4]);
+    rings.forEach(r => {
+      x.beginPath(); x.arc(cx, cy, r.r * mR, 0, Math.PI*2);
+      x.strokeStyle = r.col; x.stroke();
+    });
+    x.setLineDash([]);
+
+    x.font = '9px "Segoe UI", sans-serif';
+    x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+    x.fillStyle = 'rgba(91,141,239,.45)'; x.fillText('INNER', cx, cy - 0.25*mR - 4);
+    x.fillStyle = 'rgba(122,158,126,.45)'; x.fillText('HABITABLE', cx, cy - 0.44*mR - 4);
+    x.fillStyle = 'rgba(201,115,138,.45)'; x.fillText('OUTER', cx, cy - 0.62*mR - 4);
+    x.fillStyle = 'rgba(74,85,104,.40)'; x.fillText('KUIPER', cx, cy - 0.80*mR - 4);
+
+    const sg = x.createRadialGradient(cx, cy, 0, cx, cy, 46);
+    sg.addColorStop(0,   '#ffd700');
+    sg.addColorStop(0.45,'rgba(212,169,52,.45)');
+    sg.addColorStop(1,   'rgba(212,169,52,0)');
+    x.beginPath(); x.arc(cx, cy, 46, 0, Math.PI*2); x.fillStyle = sg; x.fill();
+
+    const pulse = 0.80 + 0.20*Math.sin(Date.now() * 0.002);
+    const cg = x.createRadialGradient(cx, cy, 22, cx, cy, 62*pulse);
+    cg.addColorStop(0, 'rgba(255,215,0,.10)'); cg.addColorStop(1, 'rgba(255,215,0,0)');
+    x.beginPath(); x.arc(cx, cy, 62*pulse, 0, Math.PI*2); x.fillStyle = cg; x.fill();
+
+    x.beginPath(); x.arc(cx, cy, 22, 0, Math.PI*2);
+    x.fillStyle = 'rgba(255,215,0,.92)'; x.fill();
+    x.strokeStyle = '#ffd700'; x.lineWidth = 1.5; x.stroke();
+
+    x.font = 'bold 11px "Segoe UI", sans-serif'; x.textBaseline = 'middle';
+    x.fillStyle = '#0a0e14'; x.fillText('1HB', cx, cy - 3);
+    x.font = '7px "Segoe UI", sans-serif'; x.fillText('SUPREME CT', cx, cy + 8);
+
+    pl.forEach(p => {
+      p.a += p.s;
+      const px = cx + Math.cos(p.a) * p.o * mR;
+      const py = cy + Math.sin(p.a) * p.o * mR;
+
+      const g = x.createRadialGradient(px, py, 0, px, py, p.z * 2.4);
+      g.addColorStop(0, p.c + '55'); g.addColorStop(1, p.c + '00');
+      x.beginPath(); x.arc(px, py, p.z * 2.4, 0, Math.PI*2); x.fillStyle = g; x.fill();
+
+      x.beginPath(); x.arc(px, py, p.z, 0, Math.PI*2); x.fillStyle = p.c; x.fill();
+
+      x.font = '8px "Segoe UI", sans-serif'; x.textAlign = 'center'; x.textBaseline = 'top';
+      x.fillStyle = p.c; x.fillText(p.n, px, py + p.z + 3);
+    });
+
+    raf = requestAnimationFrame(dr);
+  }
+
+  function boot(){
+    rz(); if(raf) cancelAnimationFrame(raf); dr();
+  }
+
+  if(document.readyState === 'complete' || document.readyState === 'interactive'){
+    setTimeout(boot, 30);
+  } else { window.addEventListener('DOMContentLoaded', boot); }
+  window.addEventListener('resize', rz);
+})();
+
+const mc = document.getElementById('mc'), sa = document.querySelectorAll('.sa');
+mc.addEventListener('scroll', function(){
+  let cur = '';
+  sa.forEach(a => { if(a.getBoundingClientRect().top < 200) cur = a.id; });
+  if(cur){
+    document.querySelectorAll('.ni').forEach(n => {
+      n.classList.remove('active');
+      const oc = n.getAttribute('onclick');
+      if(oc && oc.indexOf("'" + cur + "'") !== -1) n.classList.add('active');
+    });
+  }
+});
+</script>
+</body>
+</html>
